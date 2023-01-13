@@ -1,0 +1,30 @@
+<!-- sldsValidatorIgnore -->
+<!--This is the main component for displaying the search component and tile component-->
+<template>
+    <div style="background: rgb(229, 150, 89); border-radius: 10px;">
+        <div style="margin-right: 500px;" >
+            <a href="JavaScript:void(0);" onclick={navigateToCartDetail} >
+                <img src={cart888} height="40" width="40" /> 
+            </a>
+            <strong class="slds-var-m-top_small" style="text-align:center; vertical-align:center;">{itemsinCart}</strong>
+        </div>
+        <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
+            <c-product-search onsimple={handlesearch} ></c-product-search>
+            <!--onsimple is our event name in search component-->
+        </div>
+        <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
+            <template if:true={productRecords} >
+                <div class="slds-grid slds-wrap">
+                    <!--iterating the records by for loop-->
+                    <template for:each={productRecords} for:item="item">
+                        <!--key is the unique id-->
+                            <div class="slds-col slds-size_1-of-3 " key={item.Id}>
+                                <c-product-tile product-record={item} oncart={addToCart}></c-product-tile>
+                                <!--oncart is the cart event and product-record is the api in tile component-->
+                            </div> 
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

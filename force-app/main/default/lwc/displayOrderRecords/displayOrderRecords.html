@@ -1,0 +1,74 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    
+
+     <lightning-button variant="destructive" data-name="Error" label=" Order Open Records"
+    
+     title="Order Open Records" onclick={showModalBox} >
+</lightning-button>
+
+<!-- modal start -->      
+<template if:true={isShowModal}>
+
+<!--
+I Used SLDS for this code
+Here is link https://www.lightningdesignsystem.com/components/modals/
+--> 
+
+<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+    <div class="slds-modal__container">
+<header class="slds-modal__header">
+<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+
+    <!--lightning-button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" variant="brand" label="Custom" title="custom" onclick={hideModalBox}></lightning-button-->
+<lightning-icon icon-name="utility:close"
+alternative-text="close"
+variant="inverse"
+size="small" ></lightning-icon>
+<span class="slds-assistive-text">Close</span>
+</button>
+<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Open Order Records</h2>
+</header>
+
+<!-- modal body start -->
+<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+<!--p>Modal/Popup in Lightning Web Component (LWC) Demo</p-->
+<lightning-card title="Display the open Orders " custom-icon="custom:icon13">
+<table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+   <thead>
+       <tr>
+           <th>Select</th>
+           <th>Name</th>
+           <th>Order_Amount__c</th>
+           <th>Payment_Status__c</th>
+           <th>Shipping_Address__c</th>                   
+       </tr>
+   </thead>
+    <template for:each={ordData.data} for:item="ordItem">
+        <tr key={ordItem.Id}>
+            <td><lightning-input type="radio" name="radioButtonSelect" value={ordItem.Id} onchange={handleChangeRadio}></lightning-input></td>
+            <td>{ordItem.Name}</td>
+            <td>{ordItem.Order_Amount__c}</td>
+            <td>{ordItem.Payment_Status__c}</td>
+            <td>{ordItem.Shipping_Address__c}</td>                 
+        </tr>
+    </template>
+</table>
+
+<br/><br/>
+
+</lightning-card> 
+
+</div>
+
+<!-- modal footer start-->
+<footer class="slds-modal__footer">
+<button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+</footer>
+
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+<!-- modal end -->
+</template>

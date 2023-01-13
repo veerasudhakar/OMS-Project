@@ -1,0 +1,42 @@
+<template>
+<lightning-card class="card">
+    <article class="slds-card" part="card" style="height:600px">
+    <div style="float: left;padding-left: 21px;">
+
+        <lightning-combobox name="Category" label="Category" placeholder="Choose Category" value={value}
+
+            onchange={handleChange} options={roleOptions}>
+
+        </lightning-combobox>
+
+    </div>
+  
+    <div style="float: left;">
+
+    </div>
+
+    <div style="float: left;padding-left: 10px;">
+        <lightning-combobox name="Sub Category" label="Sub Category" placeholder="Choose Sub Category"
+
+        value={value2} onchange={handleChange2} options={roleOptions2}>
+       
+
+    </lightning-combobox>
+    </div><br/>
+        <lightning-layout-item size="4" padding="around-small">
+
+            <template for:each={productImages} for:item="p">
+                
+                <img src = {p.Image__c}  key={p.Id} height="200" width="100"/>
+               
+          
+          </template>
+        </lightning-layout-item>
+          
+       
+    
+
+    </article>
+</lightning-card>
+        
+</template>

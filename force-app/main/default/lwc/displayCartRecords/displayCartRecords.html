@@ -1,0 +1,75 @@
+<template>
+    
+  
+
+   <lightning-button variant="brand" label=" CartOpen Records" 
+                       title="Open popup" onclick={showModalBox}>
+   </lightning-button>
+
+  <!-- modal start -->      
+  <template if:true={isShowModal}>
+
+           <!--
+               I Used SLDS for this code
+               Here is link https://www.lightningdesignsystem.com/components/modals/
+           --> 
+
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+       <!-- modal header start -->
+         <header class="slds-modal__header">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+               <lightning-icon icon-name="utility:close"
+                  alternative-text="close"
+                  variant="inverse"
+                  size="small" ></lightning-icon>
+               <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Open cart Records</h2>
+         </header>
+     
+         <!-- modal body start -->
+         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+               <lightning-card title="Display the cart records " custom-icon="custom:icon13">
+       <table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Cart Status</th>
+                    <th>Customer</th>
+                    <th>Total Amount</th>  
+                   
+                    <!--th>Amount__c</th-->                         
+                </tr>
+            </thead>
+             <template for:each={cartData.data} for:item="cartItem">
+                 <tr key={cartItem.Id}>
+                     <td><lightning-input type="radio" name="radioButtonSelect" value={cartItem.Id} onchange={handleChangeRadio}></lightning-input></td>
+                     <td>{cartItem.Name}</td>
+                     <td>{cartItem.Cart_Status__c}</td>
+                     <td>{cartItem.Customer__c}</td>
+                     <td>{cartItem.Total_Discount__c}</td>
+                   
+                     <!--td>{cartItem.Amount__c}</td-->                
+                 </tr>
+             </template>
+       </table>
+  
+ <br/><br/>
+  
+    </lightning-card>
+         </div>
+
+         <!-- modal footer start-->
+         <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={hideModalBox}>Cancel</button>
+         </footer>
+      
+      </div>
+   </section>
+   <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+<!-- modal end -->
+    
+</template>

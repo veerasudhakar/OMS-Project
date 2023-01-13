@@ -1,0 +1,24 @@
+<template>
+    
+
+    <div class="slds-var-m-bottom_medium"></div>
+    <c-child-carousel carousel-details={carouselData}></c-child-carousel>
+
+    <div class="slds-var-m-bottom_medium"></div>
+    <lightning-card title="Parent to Child communication on action">
+        <div class="slds-var-m-around_medium">
+            <lightning-input type="number"
+             label="Enter percentage"
+             onkeyup={changeHandler}
+             value={percentage}
+             ></lightning-input>
+             
+             <c-progress-component
+             progress-value={percentage}
+             ></c-progress-component>
+        </div>
+        <lightning-button variant="brand" label="Reset Slider"
+    onclick={handleClick}></lightning-button>
+    <c-p2c-slider-component></c-p2c-slider-component>
+    </lightning-card>
+</template>

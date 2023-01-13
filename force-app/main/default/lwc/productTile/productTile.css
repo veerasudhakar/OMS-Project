@@ -1,0 +1,56 @@
+.product_card
+{
+    border: 1px solid rgb(230, 143, 77);
+    border: radius 0.25rem;
+    display: block;
+}
+.product_image
+{
+    height: 150px;
+    width:initial;
+}
+a {
+    position: relative;
+    padding: 4px 15px;
+    margin: 45px 0;
+    color: #21ebff;
+    text-decoration: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+a::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 4px;
+    height: 4px;
+    border-top: 2px solid #00eaff;
+    border-left: 2px solid #21ebff;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 4px;
+    height: 4px;
+    border-bottom: 2px solid #21ebff;
+    border-right: 2px solid #21ebff;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+}
+a:hover::before,a:hover::after {
+    width: 30%;
+    height: 30%;
+    transition-delay: 0s;
+}
+a:hover {
+    background: #21ebff;
+    color: #000;
+    box-shadow: 0 0 50px #21ebff;
+    transition-delay: 0.5s;
+}
