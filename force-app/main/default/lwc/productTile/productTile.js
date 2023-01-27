@@ -147,14 +147,28 @@ export default class ProductTile extends NavigationMixin(LightningElement)
             console.log(error);
         
         });
+        /*
         this[NavigationMixin.Navigate]({
             type: 'standard__navItemPage',
             attributes: {
                 objectApiName: 'Related_Product_Details',
                 state:{
-                       c__productId:this.productId
+                       n__productId:this.productId
                       }
             }
         })
+        */
+       //Changes by Sudhakar by Navigation Page
+        this[NavigationMixin.Navigate]({
+         type:'standard__navItemPage',
+            attributes:{
+               apiName:'Related_Product_Details'
+           },
+           state:{
+
+           n__productId:this.productRecord.Id
+
+           }
+           })
     }
 }

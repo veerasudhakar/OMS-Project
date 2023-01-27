@@ -8,11 +8,70 @@
             </a>
             <strong class="slds-var-m-top_small" style="text-align:center; vertical-align:center;">{itemsinCart}</strong>
         </div>
-        <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
-            <c-product-search onsimple={handlesearch} ></c-product-search>
-            <!--onsimple is our event name in search component-->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+              <span>
+                <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
+                    <c-product-search onsimple={handlesearch} ></c-product-search>
+                    <!--onsimple is our event name in search component-->
+                </div>
+              </span>
+            </div>
+            <div class="slds-col slds-size_2-of-3">
+                <span>
+                    <div style="float: left;padding-left: 450px;">
+
+                        <lightning-combobox name="Category" label="Category" placeholder="Choose Category" value={value}
+                
+                            onchange={handleChange} options={roleOptions}>
+                
+                        </lightning-combobox>
+                
+                    </div>
+                  
+                    <div style="float: left;">
+                
+                    </div>
+                
+                    <div style="float: left;padding-left: 10px;">
+                        <lightning-combobox name="Sub Category" label="Sub Category" placeholder="Sub Category"
+                
+                        value={value2} onchange={handleChange2} options={roleOptions2}>
+                       
+                
+                    </lightning-combobox>
+                    </div>
+                    <!--Refresh Button by Rahul-->
+                      <div style="float:left; padding:28px 10px;">
+                        <!--Clear Button -->
+                        <lightning-icon icon-name="utility:refresh" class="clear" size="small" alternative-text="Clear" onclick ={clearFilter}>
+                        </lightning-icon>
+                      </div>
+                </span>
+              </div>
         </div>
+
+        <!--Price Range-->
+
+        <div style="font-weight:650;font-size:12px;">Price Range</div>
+                <div class="slds-grid slds-wrap">
+                    
+                    <lightning-input type="integer" label="Min" value={minValue} disabled={isCatSelected} onchange={minHandleAmountChange} style="padding-right: 10px;width: 75px;"></lightning-input>
+               
+                
+           
+                    <lightning-input type="integer" label="Max" value={maxValue} disabled={isCatSelected} onchange={maxHandleAmountChange} style="padding-right:10px;width:75px;"></lightning-input>
+                   
+                
+                
+                    <button style="margin-top: 24px;" variant="brand-outline" label="Apply" onclick={applyPriceHandler}>Apply</button>
+
+               
+            </div>
+
+
         <div class="slds-var-m-left_small slds-var-m-right_small slds-var-m-bottom_small">
+            <template if:true={isAllData}>
             <template if:true={productRecords} >
                 <div class="slds-grid slds-wrap">
                     <!--iterating the records by for loop-->
@@ -25,6 +84,38 @@
                     </template>
                 </div>
             </template>
+        </template>
+        <template if:true={catData}>
+            <template if:true={productImages} >
+                <div class="slds-grid slds-wrap">
+                    <!--iterating the records by for loop-->
+                    <template for:each={productImages} for:item="item">
+                        <!--key is the unique id-->
+                            <div class="slds-col slds-size_1-of-3 " key={item.Id}>
+                                <c-product-tile product-record={item} oncart={addToCart}></c-product-tile>
+                                <!--oncart is the cart event and product-record is the api in tile component-->
+                            </div> 
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <template if:true={priceData}>
+            <template if:true={product3} >
+                <div class="slds-grid slds-wrap">
+                    <!--iterating the records by for loop-->
+                    <template for:each={product3} for:item="item">
+                        <!--key is the unique id-->
+                            <div class="slds-col slds-size_1-of-3 " key={item.Id}>
+                                <c-product-tile product-record={item} oncart={addToCart}></c-product-tile>
+                                <!--oncart is the cart event and product-record is the api in tile component-->
+                            </div> 
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        
         </div>
     </div>
 </template>

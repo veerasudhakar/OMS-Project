@@ -276,4 +276,20 @@ public with sharing class ProductController
         @AuraEnabled
         public List<Order_Item__c> Orderitems     { get; set; }
     }
+    /*
+    @auraEnabled(cacheable=true)
+    public static List<Producte__c> getRelatedCategories(String prdId){
+        Producte__c pd =[SELECT Id, Name,Family__c FROM Producte__c WHERE Id=:prdId];
+         List<Producte__c> rcList =[SELECT Id, Name,Family__c,Price__c,Image__c FROM Producte__c WHERE Family=:pd.Family AND Id!=:prdId];
+         return rcList;
+        }
+        */
+
+        //Related Products Method *Sudhakar*
+        @auraEnabled(cacheable=true)
+public static List<Producte__c> getRelatedCategories1(String prdId){
+    Producte__c pd1 =[SELECT Id, Name,Family__c FROM Producte__c WHERE Id=:prdId];
+List<Producte__c> rcList =[SELECT Id, Name,Family__c,Price__c,Resource_Url__c,Image__c FROM Producte__c WHERE Family__c=:pd1.Family__c AND Id!=:prdId];
+return rcList;
+}
 }

@@ -1,0 +1,52 @@
+<template>
+    <!--lightning-card title="Related Products">
+        <template if:true={relatedCatg}>
+            <lightning-layout multiple-rows>
+              <template for:each={relatedCatg} for:item="rc">
+                <lightning-layout-item key={rc.Id} size="6">
+                    <div style="padding-left:40px;">
+                     <div><strong>{rc.Name}</strong></div>
+                        <template for:each={rc.Producte__c} for:item="img">
+                            <img src={img.Resource_URL__c} key={img.Id} height="100px" width="200px"/>
+productjj
+                        </template>
+                     <div>
+                        
+                        <lightning-button label="View Details" onclick={relatedDetails}
+                                        value={rc.Id} class="prdId slds-p-around_large ">
+                        </lightning-button>
+                   </div>
+                    </div>
+                </lightning-layout-item>
+               </template>
+            </lightning-layout>
+        </template>                    
+    </lightning-card-->
+<!--Changes by Sudhakar-->
+    <lightning-card title="Related Products">
+        <template if:true={relatedCatg}>
+            <lightning-layout multiple-rows>
+                <template for:each={relatedCatg} for:item="rc">
+                     <lightning-layout-item key={rc.Id} class="slds-p-around_medium">
+                         <div style="padding-left:40px;">
+                             <div><strong>{rc.Name}</strong></div>
+                              
+                                 <img src={rc.Image__c} height="100px" width="200px"/>
+                                 
+                                  <p class="slds-var-m-bottom_xx-small"> MRP:
+                                     <lightning-formatted-number format-style="currency"
+                                     currency-code="INR" value={rc.Price__c} class="price"
+                                      maximum-fraction-digits="0"></lightning-formatted-number>
+                                     </p>
+                                      <div>
+                                         <lightning-button label="View Details" onclick={relatedDetails}
+                                          value={rc.Id} sty="padding-top:10px;" class="slds-align_absolute-center">
+                                         </lightning-button>
+                                         </div>
+                                        </div>
+                                     </lightning-layout-item>
+                                     </template>
+                                     </lightning-layout>
+                                     </template> 
+                                     </lightning-card>
+</template>
